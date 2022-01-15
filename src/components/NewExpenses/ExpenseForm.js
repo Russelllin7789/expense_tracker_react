@@ -6,37 +6,76 @@ const ExpenseForm = () => {
   const [title, setTitle] = useState('')
   const [amount, setAmount] = useState('')
   const [date, setDate] = useState('')
+  // const [isDisabled, setIsDisabled] = useState(true)
+  // const [isTitleSet, setIsTitleSet] = useState(false)
+  // const [isAmountSet, setIsAmountSet] = useState(false)
+  // const [isDateSet, setIsDateSet] = useState(false)
 
   const titleChangedHandler = (event) => {
-    setTitle(event.target.value)
+    let value = event.target.value
+    // value !== '' ? setIsTitleSet(true) : setIsTitleSet(false)
+    // isTitleSet && isAmountSet && isDateSet ? setIsDisabled(false) : setIsDisabled(true)
+    setTitle(value)
   }
 
   const amountChangedHandler = (event) => {
-    setAmount(event.target.value)
+    let value = event.target.value
+    // value !== '' ? setIsAmountSet(true) : setIsAmountSet(false)
+    // isTitleSet && isAmountSet && isDateSet ? setIsDisabled(false) : setIsDisabled(true)
+    setAmount(value)
   }
 
   const dateChangedHandler = (event) => {
-    setDate(event.target.value)
+    let value = event.target.value
+    // value !== '' ? setIsDateSet(true) : setIsDateSet(false)
+    // isTitleSet && isAmountSet && isDateSet ? setIsDisabled(false) : setIsDisabled(true)
+    setDate(value)
+  }
+
+  // *** can also set multiple states using only one single useState ***
+  // const [userInput, setUserInput] = useState({
+  //   enteredTitle: '',
+  //   enteredAmount: '',
+  //   enteredDate: ''
+  // })
+
+  const handleFormSubmit = (event) => {
+    event.preventDefault()
+
+    const expenseData = {
+      title: title,
+      amount: amount,
+      date: new Date(date)
+    }
+
+    console.log('expense data here:', expenseData)
+    setTitle('')
+    setAmount('')
+    setDate('')
+    // setIsTitleSet(false)
+    // setIsDateSet(false)
+    // setIsAmountSet(false)
+    // setIsDisabled(true)
   }
 
   return (
-    <form>
+    <form onSubmit={handleFormSubmit}>
       <div className='new-expense__controls'>
         <div className='new-expense__control'>
           <label>Title</label>
-          <input type='text' onChange={titleChangedHandler} />
+          <input type='text' value={title} onChange={titleChangedHandler} />
         </div>
         <div className='new-expense__control'>
           <label>Amount</label>
-          <input type='number' min='0.01' step='0.01' onChange={amountChangedHandler} />
+          <input type='number' value={amount} min='0.01' step='0.01' onChange={amountChangedHandler} />
         </div>
         <div className='new-expense__control'>
           <label>Date</label>
-          <input type='date' min='2019-01-01' max='2022-12-31' onChange={dateChangedHandler} />
+          <input type='date' value={date} min='2019-01-01' max='2022-12-31' onChange={dateChangedHandler} />
         </div>
       </div>
       <div className='new-expense__actions'>
-        <button type='submit'>Add Expense</button>
+        <button className='submit-button' type='submit'>Add Expense</button>
       </div>
     </form>
   )
