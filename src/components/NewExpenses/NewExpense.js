@@ -3,10 +3,21 @@ import React from "react";
 import './NewExpense.css'
 import ExpenseForm from "./ExpenseForm";
 
-const NewExpense = () => {
+const NewExpense = (props) => {
+  const expenseSubmitHandler = (expense) => {
+    const expenseData = {
+      ...expense,
+      id: Math.random().toString()
+    }
+
+    console.log('expenseData @ NewExpense:', expenseData)
+
+    props.onAddExpense(expenseData)
+  }
+
   return (
     <div className="new-expense">
-      <ExpenseForm />
+      <ExpenseForm onExpenseSubmit={expenseSubmitHandler} />
     </div>
   )
 }

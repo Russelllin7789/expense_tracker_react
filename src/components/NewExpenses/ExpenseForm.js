@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './ExpenseForm.css'
 
-const ExpenseForm = () => {
+const ExpenseForm = (props) => {
   // can have multiple states for a single component, and handle them separately
   const [title, setTitle] = useState('')
   const [amount, setAmount] = useState('')
@@ -48,7 +48,8 @@ const ExpenseForm = () => {
       date: new Date(date)
     }
 
-    console.log('expense data here:', expenseData)
+    props.onExpenseSubmit(expenseData)
+
     setTitle('')
     setAmount('')
     setDate('')
