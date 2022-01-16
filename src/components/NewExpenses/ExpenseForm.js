@@ -6,6 +6,7 @@ const ExpenseForm = (props) => {
   const [title, setTitle] = useState('')
   const [amount, setAmount] = useState('')
   const [date, setDate] = useState('')
+  const [buttonWasClicked, setButtonWasClicked] = useState(false)
   // const [isDisabled, setIsDisabled] = useState(true)
   // const [isTitleSet, setIsTitleSet] = useState(false)
   // const [isAmountSet, setIsAmountSet] = useState(false)
@@ -39,12 +40,16 @@ const ExpenseForm = (props) => {
   //   enteredDate: ''
   // })
 
+  const showNewExpenseArea = () => {
+    setButtonWasClicked(!buttonWasClicked)
+  }
+
   const handleFormSubmit = (event) => {
     event.preventDefault()
 
     const expenseData = {
       title: title,
-      amount: amount,
+      amount: +amount,
       date: new Date(date)
     }
 
@@ -57,6 +62,10 @@ const ExpenseForm = (props) => {
     // setIsDateSet(false)
     // setIsAmountSet(false)
     // setIsDisabled(true)
+  }
+
+  if (!buttonWasClicked) {
+    return <button onClick={showNewExpenseArea}>Add New Expense</button>
   }
 
   return (
@@ -76,7 +85,8 @@ const ExpenseForm = (props) => {
         </div>
       </div>
       <div className='new-expense__actions'>
-        <button className='submit-button' type='submit'>Add Expense</button>
+        <button className='submit-button' onClick={showNewExpenseArea}>Cancel</button>
+        <button className='submit-button' type='submit' onClick={showNewExpenseArea}>Add Expense</button>
       </div>
     </form>
   )
