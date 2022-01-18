@@ -6,6 +6,15 @@ import ExpensesFilter from './ExpensesFilter'
 import ExpensesChart from './ExpensesChart'
 import ExpensesList from './ExpensesList'
 import './Expenses.css'
+import styled from 'styled-components'
+
+const Expense = styled.div`
+  padding: 1rem;
+  background-color: rgb(31, 31, 31);
+  margin: 2rem auto;
+  width: 50rem;
+  max-width: 95%;
+`
 
 const Expenses = (props) => {
   const [year, setYear] = useState('2019')
@@ -18,13 +27,13 @@ const Expenses = (props) => {
   const filteredExpenses = props.items.filter(expense => expense.date.getFullYear().toString() === year)
 
   return (
-    <div>
+    <Expense>
       <Card className="expenses">
         <ExpensesFilter selected={year} onYearSelected={selectedYearHandler} />
         <ExpensesChart expenses={filteredExpenses} />
         <ExpensesList items={filteredExpenses} />
       </Card>
-    </div>
+    </Expense>
   )
 }
 

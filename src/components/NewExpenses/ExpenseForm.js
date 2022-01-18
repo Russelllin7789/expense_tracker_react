@@ -7,7 +7,7 @@ const ExpenseForm = (props) => {
   const [amount, setAmount] = useState('')
   const [date, setDate] = useState('')
   const [buttonWasClicked, setButtonWasClicked] = useState(false)
-  // const [isDisabled, setIsDisabled] = useState(true)
+  const [isDisabled, setIsDisabled] = useState(true)
   // const [isTitleSet, setIsTitleSet] = useState(false)
   // const [isAmountSet, setIsAmountSet] = useState(false)
   // const [isDateSet, setIsDateSet] = useState(false)
@@ -86,7 +86,7 @@ const ExpenseForm = (props) => {
       </div>
       <div className='new-expense__actions'>
         <button className='submit-button' onClick={showNewExpenseArea}>Cancel</button>
-        <button className='submit-button' type='submit' onClick={showNewExpenseArea}>Add Expense</button>
+        <button className='submit-button' type='submit' disabled={isDisabled}>Add Expense</button>
       </div>
     </form>
   )
