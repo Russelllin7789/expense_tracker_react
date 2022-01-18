@@ -8,28 +8,31 @@ const ExpenseForm = (props) => {
   const [date, setDate] = useState('')
   const [buttonWasClicked, setButtonWasClicked] = useState(false)
   const [isDisabled, setIsDisabled] = useState(true)
-  // const [isTitleSet, setIsTitleSet] = useState(false)
-  // const [isAmountSet, setIsAmountSet] = useState(false)
-  // const [isDateSet, setIsDateSet] = useState(false)
+  const [isTitleSet, setIsTitleSet] = useState(false)
+  const [isAmountSet, setIsAmountSet] = useState(false)
+  const [isDateSet, setIsDateSet] = useState(false)
 
   const titleChangedHandler = (event) => {
     let value = event.target.value
-    // value !== '' ? setIsTitleSet(true) : setIsTitleSet(false)
+    value !== '' ? setIsTitleSet(true) : setIsTitleSet(false)
     // isTitleSet && isAmountSet && isDateSet ? setIsDisabled(false) : setIsDisabled(true)
     setTitle(value)
   }
 
   const amountChangedHandler = (event) => {
     let value = event.target.value
-    // value !== '' ? setIsAmountSet(true) : setIsAmountSet(false)
+    value !== '' ? setIsAmountSet(true) : setIsAmountSet(false)
     // isTitleSet && isAmountSet && isDateSet ? setIsDisabled(false) : setIsDisabled(true)
     setAmount(value)
   }
 
   const dateChangedHandler = (event) => {
     let value = event.target.value
-    // value !== '' ? setIsDateSet(true) : setIsDateSet(false)
-    // isTitleSet && isAmountSet && isDateSet ? setIsDisabled(false) : setIsDisabled(true)
+    value !== '' ? setIsDateSet(true) : setIsDateSet(false)
+    console.log(isTitleSet, isAmountSet, isDateSet)
+    if (isTitleSet && isAmountSet && isDateSet) {
+      setIsDisabled(false)
+    }
     setDate(value)
   }
 

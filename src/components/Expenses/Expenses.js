@@ -5,7 +5,7 @@ import ExpenseItem from "./ExpenseItem";
 import ExpensesFilter from './ExpensesFilter'
 import ExpensesChart from './ExpensesChart'
 import ExpensesList from './ExpensesList'
-import './Expenses.css'
+// import './Expenses.css'
 import styled from 'styled-components'
 
 const Expense = styled.div`
