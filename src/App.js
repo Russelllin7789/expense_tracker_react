@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import './App.css';
 import Expenses from './components/Expenses/Expenses';
 import NewExpense from './components/NewExpenses/NewExpense';
+import AddUser from './components/User/AddUser';
 
 const DUMMY_EXPENSES = [
   {
@@ -38,6 +39,7 @@ const App = () => {
 
   return (
     <div>
+      <AddUser />
       <NewExpense onAddExpense={AddExpenseIntoExpenses} />
       <Expenses items={expenses} />
     </div>
