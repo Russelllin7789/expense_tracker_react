@@ -19,14 +19,8 @@ const AddUser = (props) => {
       return
     }
 
-    const userObj = {
-      name: userName,
-      age: userAge
-    }
+    props.onAddUser(userName, userAge)
 
-    setUsersList(usersList.push(userObj))
-
-    console.log('user name:', userName, 'user age:', userAge, 'users list:', usersList)
     setUserName('')
     setUserAge('')
   }

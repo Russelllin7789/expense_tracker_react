@@ -4,6 +4,7 @@ import './App.css';
 import Expenses from './components/Expenses/Expenses';
 import NewExpense from './components/NewExpenses/NewExpense';
 import AddUser from './components/User/AddUser';
+import UsersList from './components/User/UsersList';
 
 const DUMMY_EXPENSES = [
   {
@@ -29,6 +30,7 @@ const DUMMY_EXPENSES = [
 
 const App = () => {
   const [expenses, setExpenses] = useState(DUMMY_EXPENSES)
+  const [usersList, setUsersList] = useState([])
 
   const AddExpenseIntoExpenses = (expense) => {
     console.log('expense @ App.js:', expense)
@@ -37,9 +39,17 @@ const App = () => {
     })
   }
 
+  const AddUserHandler = (userName, userAge) => {
+    console.log('user @ App.js:', userName, userAge)
+    setUsersList((perviolusList) => {
+      return [...perviolusList, { name: userName, age: userAge, id: Math.random().toString() }]
+    })
+  }
+
   return (
     <div>
-      <AddUser />
+      <AddUser onAddUser={AddUserHandler} />
+      <UsersList users={usersList} />
       <NewExpense onAddExpense={AddExpenseIntoExpenses} />
       <Expenses items={expenses} />
     </div>
