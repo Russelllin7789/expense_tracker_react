@@ -8,15 +8,27 @@ const AddUser = (props) => {
   const [userName, setUserName] = useState('')
   const [userAge, setUserAge] = useState('')
   const [usersList, setUsersList] = useState([])
+  // initial state is undefined for error
+  const [error, setError] = useState()
 
   const addUserHandler = (event) => {
     event.preventDefault()
     // basic validation
     if (userName.trim().length === 0 || userAge.trim().length === 0) {
+      setError({
+        title: 'Invalid Input',
+        message: 'Please enter a valid name and age (non-empty values)',
+        buttonKey: 'Okay, got it'
+      })
       return
     }
     // use '+' to force string be transformed into number
     if (+userAge < 1) {
+      setError({
+        title: 'Invalid Age',
+        message: 'Please enter a valid age (>0)',
+        buttonKey: 'Fine'
+      })
       return
     }
 
@@ -36,7 +48,7 @@ const AddUser = (props) => {
 
   return (
     <div>
-      <ErrorModal title="Error Occured!" message="Something went wrong!" buttonKey="Okay though" />
+      {error && <ErrorModal title={error.title} message={error.message} buttonKey={error.buttonKey} />}
       <Card className={classes.input}>
         <form onSubmit={addUserHandler}>
           <label htmlFor="userName">User Name</label>
