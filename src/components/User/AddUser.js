@@ -6,6 +6,7 @@ import Button from "../common UI/Button";
 const AddUser = (props) => {
   const [userName, setUserName] = useState('')
   const [userAge, setUserAge] = useState('')
+  const [usersList, setUsersList] = useState([])
 
   const addUserHandler = (event) => {
     event.preventDefault()
@@ -18,8 +19,14 @@ const AddUser = (props) => {
       return
     }
 
-    console.log('user name:', userName, 'user age:', userAge)
+    const userObj = {
+      name: userName,
+      age: userAge
+    }
 
+    setUsersList(usersList.push(userObj))
+
+    console.log('user name:', userName, 'user age:', userAge, 'users list:', usersList)
     setUserName('')
     setUserAge('')
   }
